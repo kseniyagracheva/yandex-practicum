@@ -2,13 +2,12 @@ import { FC, useEffect } from 'react';
 
 import { TOrder } from '@utils-types';
 import { FeedInfoUI } from '@ui';
-import { useSelector, useDispatch } from '../../services/store';
+import { useSelector } from '../../services/store';
 import {
   getOrdersSelector,
   getTotalSelector,
   getTotalTodaySelector
 } from '../../services/orderSlice';
-import { getIngredients } from '../../services/ingredientsSlice';
 
 const getOrders = (orders: TOrder[], status: string): number[] =>
   orders
@@ -27,12 +26,6 @@ export const FeedInfo: FC = () => {
   const readyOrders = getOrders(orders, 'done');
 
   const pendingOrders = getOrders(orders, 'pending');
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getIngredients());
-  }, [dispatch]);
 
   return (
     <FeedInfoUI
