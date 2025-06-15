@@ -13,7 +13,7 @@ describe('Тесты на модальное окно', () => {
         statusCode: 200,
         body: {
           success: true,
-          data: data.ingredient
+          data: data.data
         }
       }).as('loadIngredients');
     });
@@ -25,7 +25,7 @@ describe('Тесты на модальное окно', () => {
   });
 
   it('Открывает и отображает модалку с деталями ингредиента', function () {
-    const ingredient = this.ingredients.ingredient[0];
+    const ingredient = this.ingredients.data[0];
 
     cy.contains(ingredient.name).click();
 
@@ -38,7 +38,7 @@ describe('Тесты на модальное окно', () => {
   });
 
   it('Закрывается по клику на крестик', function () {
-    const ingredient = this.ingredients.ingredient[0];
+    const ingredient = this.ingredients.data[0];
 
     cy.contains(ingredient.name).click();
     cy.get(SELECTORS.modal).should('be.visible');
@@ -49,7 +49,7 @@ describe('Тесты на модальное окно', () => {
   });
 
   it('Закрывается по клику на оверлей', function () {
-    const ingredient = this.ingredients.ingredient[0];
+    const ingredient = this.ingredients.data[0];
 
     cy.contains(ingredient.name).click();
     cy.get(SELECTORS.modal).should('be.visible');
